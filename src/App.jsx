@@ -1,26 +1,48 @@
-import React, {Component} from 'react';
+import React, { Component } from "react";
+// import ChatBar from "./ChatBar.jsx";
+import MessageList from "./MessageList.jsx";
 
-class App extends Component {
+export default class App extends Component {
+  // Set initial state
+  constructor(props) {
+    super(props);
+    // this is the *only* time you should assign directly to state:
+    this.state = {
+      user: "Dushantha",
+      messages: [
+        {
+          type: "incomingMessage",
+          content:
+            "I won't be impressed with technology until I can download food.",
+          username: "Anonymous1"
+        },
+        {
+          type: "incomingNotification",
+          content: "Anonymous1 changed their name to nomnom"
+        },
+        {
+          type: "incomingMessage",
+          content:
+            "I wouldn't want to download Kraft Dinner. I'd be scared of cheese packet loss.",
+          username: "Anonymous2"
+        },
+        {
+          type: "incomingMessage",
+          content: "...",
+          username: "nomnom"
+        }
+      ]
+    };
+  }
+
   render() {
     return (
       <div>
-        <main className="messages">
-          <div className="message">
-            <span className="message-username">Anonymous1</span>
-            <span className="message-content">I won't be impressed with technology until I can download food.</span>
-          </div>
-
-          <div className="message system">
-            Anonymous1 changed their name to nomnom.
-          </div>
-        </main>
-
+        <MessageList messages={this.state.messages} />
         <footer className="chatbar">
-          <input className="chatbar-username" placeholder="Your Name (Optional)" />
-          <input className="chatbar-message" placeholder="Type a message and hit ENTER" />
+          {/* <ChatBar newMessage={this.newMessage} /> */}
         </footer>
       </div>
     );
   }
 }
-export default App;
