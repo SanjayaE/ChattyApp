@@ -11,8 +11,19 @@ export default class ChatBar extends Component {
 
     return (
       <form onSubmit={onSubmit}>
-        <input type="text" name="chattyMsg" placeholder="Write your Message" />
-        <button type="submit">Add</button>
+        <footer className="chatbar">
+          <input
+            className="chatbar-username"
+            placeholder="Your Name (Optional)"
+          />
+          <input
+            className="chatbar-message"
+            type="text"
+            name="chattyMsg"
+            placeholder="Write your Message"
+          />
+          <button type="submit">Add</button>
+        </footer>
       </form>
     );
   }
