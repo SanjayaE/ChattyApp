@@ -35,11 +35,11 @@ export default class App extends Component {
     };
   }
 
-  addNewMsg = msg => {
+  addNewMsg = (msg, usr) => {
     let newMsg = {
       type: "incomingMessage",
       content: msg,
-      username: "nomnom"
+      username: usr
       //id: generateRandomId()
     };
     this.setState({ messages: [...this.state.messages, newMsg] });

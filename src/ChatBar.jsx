@@ -5,7 +5,13 @@ export default class ChatBar extends Component {
     const onSubmit = event => {
       event.preventDefault();
       const msgInput = event.target.elements.chattyMsg;
-      this.props.addNewMsg(msgInput.value);
+      const inputUsr = event.target.elements.chattyUsr;
+      if (inputUsr.value) {
+        this.props.addNewMsg(msgInput.value, inputUsr.value);
+      } else {
+        this.props.addNewMsg(msgInput.value, "annomouse");
+      }
+
       msgInput.value = "";
     };
 
@@ -14,6 +20,7 @@ export default class ChatBar extends Component {
         <footer className="chatbar">
           <input
             className="chatbar-username"
+            name="chattyUsr"
             placeholder="Your Name (Optional)"
           />
           <input
