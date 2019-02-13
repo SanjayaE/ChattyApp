@@ -5,7 +5,7 @@ export default class Messages extends Component {
     return (
       <div className="message">
         <h3> {this.props.msg.username} </h3>
-        <p> {this.props.msg.text}</p>
+        <p> {this.props.msg.content}</p>
       </div>
     );
   }

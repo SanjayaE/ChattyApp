@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-// import ChatBar from "./ChatBar.jsx";
+import ChatBar from "./ChatBar.jsx";
 import MessageList from "./MessageList.jsx";
 
 export default class App extends Component {
@@ -35,13 +35,25 @@ export default class App extends Component {
     };
   }
 
+  addNewMsg = msg => {
+    let newMsg = {
+      type: "incomingMessage",
+      content: msg,
+      username: "nomnom"
+      //id: generateRandomId()
+    };
+    this.setState({ messages: [...this.state.messages, newMsg] });
+  };
+
   render() {
     return (
       <div>
         <MessageList messages={this.state.messages} />
-        <footer className="chatbar">
-          {/* <ChatBar newMessage={this.newMessage} /> */}
-        </footer>
+        <div className="chatbar">
+          <span className="chatbar-message">
+            {<ChatBar addNewMsg={this.addNewMsg} />}
+          </span>
+        </div>
       </div>
     );
   }
