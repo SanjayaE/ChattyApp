@@ -36,7 +36,8 @@ export default class App extends Component {
           username: "nomnom",
           id: 4
         }
-      ]
+      ],
+      webSocket: null
     };
   }
 
@@ -47,12 +48,14 @@ export default class App extends Component {
       username: usr,
       id: generateRandomId()
     };
-    this.setState({ messages: [...this.state.messages, newMsg] });
+
+    this.state.webSocket.send(JSON.stringify(newMsg));
+    // this.setState({ messages: [...this.state.messages, newMsg] });
   };
 
   componentDidMount() {
     console.log("componentDidMount <App />");
-    const webSocket = new WebSocket("ws://localhost:3001");
+    this.setState({ webSocket: new WebSocket("ws://localhost:3001") });
 
     setTimeout(() => {
       console.log("Simulating incoming message");
