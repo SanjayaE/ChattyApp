@@ -9,35 +9,8 @@ export default class App extends Component {
     super(props);
     // this is the *only* time you should assign directly to state:
     this.state = {
-      user: "Dushantha",
-      messages: [
-        {
-          type: "incomingMessage",
-          content:
-            "I won't be impressed with technology until I can download food.",
-          username: "Anonymous1",
-          id: 1
-        },
-        {
-          type: "incomingNotification",
-          content: "Anonymous1 changed their name to nomnom",
-          id: 2
-        },
-        {
-          type: "incomingMessage",
-          content:
-            "I wouldn't want to download Kraft Dinner. I'd be scared of cheese packet loss.",
-          username: "Anonymous2",
-          id: 3
-        },
-        {
-          type: "incomingMessage",
-          content: "...",
-          username: "nomnom",
-          id: 4
-        }
-      ],
-      webSocket: null
+      currentUser: { name: "Dushantha" },
+      messages: []
     };
   }
 
@@ -49,13 +22,27 @@ export default class App extends Component {
       id: generateRandomId()
     };
 
-    this.state.webSocket.send(JSON.stringify(newMsg));
+    this.webSocket.send(JSON.stringify(newMsg));
     // this.setState({ messages: [...this.state.messages, newMsg] });
   };
 
   componentDidMount() {
+    //Connecting to the webSocket
+    this.webSocket = new WebSocket("ws://localhost:3001");
+    this.webSocket.onopen = event => {
+      console.log("connected to the websocket server");
+      // this.socket.send('newMessages');
+    };
+
+    //Display incoming message from server on the client
+    this.webSocket.onmessage = e => {
+      const newMsgFromWs = JSON.parse(e.data);
+      //console.log(newMsgFromWs);
+      this.setState({ messages: [...this.state.messages, newMsgFromWs] });
+    };
+
     console.log("componentDidMount <App />");
-    this.setState({ webSocket: new WebSocket("ws://localhost:3001") });
+    // this.setState({ webSocket: new WebSocket("ws://localhost:3001") });
 
     setTimeout(() => {
       console.log("Simulating incoming message");
