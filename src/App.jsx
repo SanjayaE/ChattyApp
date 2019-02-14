@@ -52,6 +52,8 @@ export default class App extends Component {
 
   componentDidMount() {
     console.log("componentDidMount <App />");
+    const webSocket = new WebSocket("ws://localhost:3001");
+
     setTimeout(() => {
       console.log("Simulating incoming message");
       // Add a new message to the list of messages in the data store
