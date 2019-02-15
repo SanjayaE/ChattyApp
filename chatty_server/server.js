@@ -4,6 +4,7 @@ const express = require('express');
 const WebSocket = require('ws');
 const SocketServer = WebSocket.Server;
 const uuidv4 = require('uuid/v4');
+const userCount = {};
 
 // Set the port to 3001
 const PORT = 3001;
@@ -32,11 +33,23 @@ wss.broadcast = function broadcast(data) {
   });
 };
 
+
+
 // Set up a callback that will run when a client connects to the server
 // When a client connects they are assigned a socket, represented by
 // the ws parameter in the callback.
+
+
 wss.on('connection', (ws) => {
   console.log('Client connected');
+
+  //user count Broadcast on connect
+  usersConnected = {
+    type: 'usrCount',
+    usrCount: wss.clients.size
+  }
+  console.log(usersConnected)
+  wss.broadcast(JSON.stringify(usersConnected));
 
   ws.on('message', function incoming(message) {
     var obj = JSON.parse(message)
@@ -48,12 +61,18 @@ wss.on('connection', (ws) => {
     } else {
       obj.type = "incomingNotification";
     }
-
-
-    console.log("This is", obj.previousUser)
     wss.broadcast(JSON.stringify(obj));
   });
 
   // Set up a callback for when a client closes the socket. This usually means they closed their browser.
-  ws.on('close', () => console.log('Client disconnected'));
+  ws.on('close', () => {
+    console.log('Client disconnected')
+
+    //user count Broadcast on disconnect
+    usersConnected = {
+      type: 'usrCount',
+      usrCount: wss.clients.size
+    }
+    wss.broadcast(JSON.stringify(usersConnected));
+  });
 });

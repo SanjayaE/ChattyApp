@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import ChatBar from "./ChatBar.jsx";
 import MessageList from "./MessageList.jsx";
+import Navbar from "./navbar.jsx";
 import { generateRandomId } from "./rid.jsx";
 
 export default class App extends Component {
@@ -11,6 +12,7 @@ export default class App extends Component {
     this.state = {
       currentUser: "defaultCurrent",
       previousUser: "defaultPrevious",
+      userCount: 0,
       messages: []
     };
   }
@@ -77,6 +79,12 @@ export default class App extends Component {
           // handle incoming notification
           this.setState({ messages: [...this.state.messages, newMsgFromWs] });
           break;
+
+        case "usrCount":
+          // handle incoming notification
+          this.setState({ userCount: newMsgFromWs.usrCount });
+          break;
+
         default:
           // show an error in the console if the message type is unknown
           throw new Error("Unknown event type " + newMsgFromWs.type);
@@ -102,6 +110,7 @@ export default class App extends Component {
   render() {
     return (
       <div>
+        <Navbar userCount={this.state.userCount} />
         <MessageList
           messages={this.state.messages}
           pu={this.state.previousUser}
