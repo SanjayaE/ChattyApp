@@ -41,9 +41,16 @@ wss.on('connection', (ws) => {
   ws.on('message', function incoming(message) {
     var obj = JSON.parse(message)
     console.log(obj.username + '   said: ', obj.content);
-    const id = uuidv4();
-    obj.id = id;
-    console.log(obj)
+    if (obj.type == "postMessage") {
+      const id = uuidv4();
+      obj.id = id;
+      obj.type = "incomingMessage";
+    } else {
+      obj.type = "incomingNotification";
+    }
+
+
+    console.log("This is", obj.previousUser)
     wss.broadcast(JSON.stringify(obj));
   });
 

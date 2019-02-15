@@ -9,7 +9,7 @@ export default class ChatBar extends Component {
       if (inputUsr.value) {
         this.props.addNewMsg(msgInput.value, inputUsr.value);
       } else {
-        this.props.addNewMsg(msgInput.value, "annomouse");
+        this.props.addNewMsg(msgInput.value, "Anonymous");
       }
 
       msgInput.value = "";
