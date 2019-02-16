@@ -6,6 +6,8 @@ The client-side app communicates with a server via WebSockets for multi-user rea
 
 ## Screenshots
 
+![screenshot](https://github.com/SanjayaE/ChattyApp/blob/master/docs/Screenshot.png)
+
 ## How to run Chatty
 
 - Install dependencies with : `npm i`
