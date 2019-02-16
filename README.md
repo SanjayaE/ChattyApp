@@ -1,45 +1,45 @@
-React Boilerplate
-=====================
+# Chatty App
 
-A minimal and light dev environment for ReactJS.
+A real-time chat app that allow you to connect with multiple users. Single page web app built with ReactJS that will allow users to communicate with each other without having to register accounts.
 
-### Usage
+The client-side app communicates with a server via WebSockets for multi-user real-time updates (No persistent database is involved; the focus is on the client-side experience).
 
-Clone the boilerplate and create your own git repo.
+## Screenshots
 
-```
-git clone git@github.com:lighthouse-labs/react-simple-boilerplate.git
-cd react-simple-boilerplate
-git remote rm origin
-git remote add origin [YOUR NEW REPOSITORY]
-# Manually update your package.json file
-```
+## How to run Chatty
 
-Install the dependencies and start the server.
+- Install dependencies with : `npm i`
 
-```
-npm install
-npm start
-open http://localhost:3000
-```
+- Start the server in chatty_server directory with : `npm start`
 
-### Static Files
+- Start the chatty app in the main directory with : `npm start`
 
-You can store static files like images, fonts, etc in the `build` folder.
+- Find the chatty at http://localhost:3000 in your browser
+- Enjoy!
 
-For example, if you copy a file called my_image.png into the build folder you can access it using `http://localhost:3000/build/my_image.png`.
+## Behaviour
 
-### Linting
+- When any connected user sends a chat message, all connected users receive and display the message.
 
-This boilerplate project includes React ESLint configuration.
+- When any connected user changes their name, all connected users are notified of the name change.
 
-```
-npm run lint
-```
+- Notifications are styled differently from chat messages.
+
+- Header will display the count of connected users
+  When the number of connected users changes, this count will be updated for all connected users.
+
+- Different users' names will each be coloured differently, the colouring is consistent between connected user instances.
 
 ### Dependencies
 
-* React
-* Webpack
-* [babel-loader](https://github.com/babel/babel-loader)
-* [webpack-dev-server](https://github.com/webpack/webpack-dev-server)
+- react
+- react-dom
+- babel-core
+- babel-loader
+- css-loader
+- node-sass
+- sass-loader
+- sockjs-client
+- style-loader
+- webpack
+- webpack-dev-server

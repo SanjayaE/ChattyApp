@@ -19,7 +19,7 @@ body {
 }
 
 .navbar-brand {
-  color: inherit;
+  color: #473a12;
   display: block;
   float: left;
   font-weight: 700;
@@ -32,7 +32,7 @@ body {
 
 .navbarUserCounter {
 
-  color: #26242d;
+  color: #d9bf6b;
   display: block;
   float: right;
   font-weight: 500;
@@ -41,8 +41,14 @@ body {
   line-height: 60px;
   padding: 0 10px;
   text-decoration: none;
+  animation: blinker 1s linear infinite;
 
+}
 
+@keyframes blinker {
+  70% {
+    opacity: 0;
+  }
 }
 
 .chatbar {
@@ -60,7 +66,7 @@ body {
 .chatbar-username {
   border: 1px solid black;
   display: block;
-  height: 40px;
+  height: 50px;
   line-height: 40px;
   margin: 5px;
   padding: 0 9px;
@@ -69,6 +75,7 @@ body {
 .chatbar-message {
   background: #d7d5dd;
   flex: 8;
+  font-size: 12px
 }
 
 .chatbar-username {

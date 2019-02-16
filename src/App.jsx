@@ -4,15 +4,17 @@ import MessageList from "./MessageList.jsx";
 import Navbar from "./navbar.jsx";
 import { generateRandomId } from "./rid.jsx";
 const colors = [
-  "#0451ce",
+  "#cdcad4",
   "#0451ce",
   "#03ce79",
   "#db6b02",
   "#7902db",
   "#6f5d12",
-  "#43380b",
-  "#e6cd67",
-  "#8e67e6"
+  "#4c4217",
+  "#bc61ed",
+  "#e050ca",
+  "#DC143C",
+  "#856514"
 ];
 //Assign random color for each connected user
 const colour = colors[Math.floor(Math.random() * colors.length)];
