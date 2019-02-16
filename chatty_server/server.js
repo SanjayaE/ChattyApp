@@ -51,6 +51,7 @@ wss.on('connection', (ws) => {
   console.log(usersConnected)
   wss.broadcast(JSON.stringify(usersConnected));
 
+  //handling the incoming msg
   ws.on('message', function incoming(message) {
     var obj = JSON.parse(message)
     console.log(obj.username + '   said: ', obj.content);

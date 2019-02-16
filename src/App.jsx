@@ -3,20 +3,34 @@ import ChatBar from "./ChatBar.jsx";
 import MessageList from "./MessageList.jsx";
 import Navbar from "./navbar.jsx";
 import { generateRandomId } from "./rid.jsx";
+const colors = [
+  "#0451ce",
+  "#0451ce",
+  "#03ce79",
+  "#db6b02",
+  "#7902db",
+  "#6f5d12",
+  "#43380b",
+  "#e6cd67",
+  "#8e67e6"
+];
+//Assign random color for each connected user
+const colour = colors[Math.floor(Math.random() * colors.length)];
 
 export default class App extends Component {
-  // Set initial state
+  // Set initial state for the APP
   constructor(props) {
     super(props);
-    // this is the *only* time you should assign directly to state:
     this.state = {
-      currentUser: "defaultCurrent",
-      previousUser: "defaultPrevious",
+      currentUser: "Anonymous",
+      previousUser: "Dushantha",
       userCount: 0,
+      userColor: colour,
       messages: []
     };
   }
 
+  //main function to add new message
   addNewMsg = (msg, usr) => {
     let newState = this.state;
 
@@ -24,7 +38,8 @@ export default class App extends Component {
       type: "postMessage",
       content: msg,
       username: usr,
-      id: generateRandomId()
+      id: generateRandomId(),
+      colour: this.state.userColor
     };
 
     //sending new msg to the server
@@ -32,8 +47,6 @@ export default class App extends Component {
 
     //user name change
     if (newState.currentUser !== usr) {
-      console.log("31: ", newState);
-
       newState.previousUser = newState.currentUser;
       newState.currentUser = usr;
 
@@ -44,8 +57,7 @@ export default class App extends Component {
         username: usr,
         previousUser: newState.previousUser
       };
-      console.log("44: ", newState);
-      console.log("45:", newUserNotification);
+
       //sending new notification to the server
       this.webSocket.send(JSON.stringify(newUserNotification));
     }
@@ -90,23 +102,9 @@ export default class App extends Component {
           throw new Error("Unknown event type " + newMsgFromWs.type);
       }
     };
-
-    // setTimeout(() => {
-    //   console.log("Simulating incoming message");
-    //   // Add a new message to the list of messages in the data store
-    //   const newMessage = {
-    //     id: 33,
-    //     username: "Michelle",
-    //     content: "Hello there!"
-    //   };
-
-    //   const messages = this.state.messages.concat(newMessage);
-    //   // Update the state of the app component.
-    //   // Calling setState will trigger a call to render() in App and all child components.
-    //   this.setState({ messages: messages });
-    // }, 3000);
   }
 
+  //rendering all the components and attach to the root
   render() {
     return (
       <div>

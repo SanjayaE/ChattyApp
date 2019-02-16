@@ -1,5 +1,5 @@
 body {
-  background: white;
+  background: #cdcad4;
   color: black;
   font-family: 'Open Sans', sans-serif;
   font-size: 14px;
@@ -8,7 +8,7 @@ body {
 
 
 .navbar {
-  background: tomato;
+  background: #7b738e;
   border-bottom: 1px solid black;
   height: 60px;
   left: 0;
@@ -30,8 +30,23 @@ body {
   text-decoration: none;
 }
 
+.navbarUserCounter {
+
+  color: #26242d;
+  display: block;
+  float: right;
+  font-weight: 500;
+  font-size: 20px;
+  height: 60px;
+  line-height: 60px;
+  padding: 0 10px;
+  text-decoration: none;
+
+
+}
+
 .chatbar {
-  background: tomato;
+  background: #a39db0;
   border-top: 1px solid black;
   bottom: 0;
   display: flex;
@@ -52,10 +67,12 @@ body {
 }
 
 .chatbar-message {
+  background: #d7d5dd;
   flex: 8;
 }
 
 .chatbar-username {
+  background: #d7d5dd;
   flex: 2;
 }
 
@@ -64,9 +81,10 @@ body {
   padding: 5px;
 }
 
-.message.system {
+.message.notification {
   font-style: italic;
   padding: 5px 20px;
+  flex: 2;
 }
 
 .message-content,

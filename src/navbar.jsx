@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+
+//Navigation bar component
 export default class Navbar extends Component {
   render() {
     console.log("Rendering <Navbar/>");
@@ -7,7 +9,7 @@ export default class Navbar extends Component {
         <a href="/" className="navbar-brand">
           CanTalk -Where Canadians Mingle!
         </a>
-        <a className="navbar-counter">{this.props.userCount} users online</a>
+        <a className="navbarUserCounter">{this.props.userCount} users online</a>
       </nav>
     );
   }

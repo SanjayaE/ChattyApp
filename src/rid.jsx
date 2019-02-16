@@ -1,3 +1,5 @@
+//Random ID generator from https://codesandbox.io/s/ykjmk2p4xj
+
 export const generateRandomId = (alphabet => {
   const alphabetLength = alphabet.length;
   const randoIter = (key, n) => {
